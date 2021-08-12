@@ -8,6 +8,10 @@ public class TowerIndicator : MonoBehaviour
     // Materials
     [SerializeField] Material Normal;
     [SerializeField] Material Highlight;
+    [SerializeField] Material Off;
+    [SerializeField] Material PreviousColor;
+
+
 
 
     // References
@@ -64,6 +68,10 @@ public class TowerIndicator : MonoBehaviour
 
     void OnMouseExit() 
     {
+
+        // return if there is already a popup exist
+        if (IsTherePopup())return;
+
         // set flag
         CanInteract = false;
 
@@ -135,6 +143,7 @@ public class TowerIndicator : MonoBehaviour
     // colors
     public void SetToNormalColor()
     {
+
         // change to normal color after clicked
         mRenderer.material = Normal;
 
@@ -142,8 +151,38 @@ public class TowerIndicator : MonoBehaviour
 
     public void SetToHighlightColor()
     {
+        SavePreviousColor();
+
         // change color to highlight
         mRenderer.material = Highlight;
 
+    }
+
+    public void SetToOffColor()
+    {
+        // change color to highlight
+        mRenderer.material = Off;
+
+    }
+
+
+    public void SetToPreviousColor()
+    {
+        // change color to highlight
+        mRenderer.material = PreviousColor;
+
+    }
+
+    void SavePreviousColor()
+    {
+        // save previous color
+        PreviousColor = mRenderer.material;
+    }
+
+
+
+    public string GetTowerName()
+    {
+        return tower.name;
     }
 }

@@ -10,8 +10,14 @@ public class CameraScript : MonoBehaviour
  
     void Update()
     {
+        // dont move if there is a popup
+        if (GameObject.FindGameObjectWithTag("Popup"))return;
+        
         // dont move if shift is down
         if (Input.GetKey(KeyCode.LeftShift)) return;
+
+
+
         
         if (Input.GetMouseButtonDown(0))
         {

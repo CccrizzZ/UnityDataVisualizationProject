@@ -19,7 +19,7 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
-        
+        isOn = true;
     }
 
     void Update()
@@ -28,22 +28,60 @@ public class Tower : MonoBehaviour
     }
 
 
-    // void TurnOff()
-    // {
-    //     // return if already off 
-    //     if (!isOn) return;
+    public void TurnOffAllCableConnected()
+    {
+        if (CableUp != null && CableUp.isBothCableOn())
+        {
+            CableUp.TurnOffBothCable();
 
-    //     isOn = false;
-    // }
+        }
 
-    // void TurnOn()
-    // {
-    //     // return if already on 
-    //     if (isOn) return;
+        if (CableDown != null && CableDown.isBothCableOn())
+        {
+            CableDown.TurnOffBothCable();
+        }
 
-    //     isOn = false;
-    // }
+        if (CableLeft != null && CableLeft.isBothCableOn())
+        {
+            CableLeft.TurnOffBothCable();
 
+        }
 
+        if (CableRight != null && CableRight.isBothCableOn())
+        {
+            CableRight.TurnOffBothCable();
+        }
+
+        isOn = false;
+
+    }
+
+    public void TurnOnAllCableConnected()
+    {
+        if (CableUp != null && !CableUp.isBothCableOn())
+        {
+            CableUp.TurnOnBothCable();
+
+        }
+
+        if (CableDown != null && !CableDown.isBothCableOn())
+        {
+            CableDown.TurnOnBothCable();
+        }
+
+        if (CableLeft != null && !CableLeft.isBothCableOn())
+        {
+            CableLeft.TurnOnBothCable();
+
+        }
+
+        if (CableRight != null && !CableRight.isBothCableOn())
+        {
+            CableRight.TurnOnBothCable();
+        }
+
+        isOn = true;
+        
+    }
 
 }

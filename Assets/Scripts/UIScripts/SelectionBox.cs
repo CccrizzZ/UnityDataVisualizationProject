@@ -11,6 +11,7 @@ public class SelectionBox : MonoBehaviour
     List<GameObject> SelectList;
     Vector2 MouseStartPos;
     Canvas MainCanvas;
+    public GameObject GroupSelectionPanel;
 
 
 
@@ -36,6 +37,9 @@ public class SelectionBox : MonoBehaviour
 
     void Update()
     {
+        // return if there is a popup
+        if (GameObject.FindGameObjectWithTag("Popup"))return;
+
         
 
         // mouse down
@@ -121,7 +125,7 @@ public class SelectionBox : MonoBehaviour
 
     void ReleaseSelectionBox()
     {
-
+        // return if not active
         if (!SelectBox.gameObject.activeSelf) return;
 
         // get min and max position of selection box
@@ -138,14 +142,44 @@ public class SelectionBox : MonoBehaviour
             // 
             if (IsInSelectionBox(screenPos, min, max))
             {
-                // SelectList.Add(item);
-                print(item.GetComponent<TowerIndicator>().tower.name);
+                SelectList.Add(item);
+                // print(item.GetComponent<TowerIndicator>().tower.name);
                 
             }
         }
         
         // turn off selection box
         SelectBox.gameObject.SetActive(false);
+        
+        // return if no indicators are selected
+        if(SelectList.Count == 0) return;
+
+        // turn all indicator color to previous color
+        // foreach (var item in SelectList)
+        // {
+        //     item.GetComponent<TowerIndicator>().SetToPreviousColor();
+
+        // }
+
+        // append popup UI to Canvas
+        var temp = Instantiate(GroupSelectionPanel);
+        temp.transform.SetParent(MainCanvas.transform, false);
+
+
+
+
+
+        // pass the list to popup UI
+        foreach (var item in SelectList)
+        {
+            temp.GetComponent<GroupSelectionPanel>().TowerIndicators.Add(item);
+            
+        }
+
+        // clear list
+        SelectList.Clear();
+
+        
 
     }
 

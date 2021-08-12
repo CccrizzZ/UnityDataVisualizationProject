@@ -107,32 +107,15 @@ public class SingleControlModule : MonoBehaviour
     }
 
 
-    // void InitSwitches()
-    // {
-    //     // create switches for each existing socket
+    public void MainPowerOffButton()
+    {
+        tower.TurnOffAllCableConnected();
 
-    //     if (SocketUp != null)
-    //     {
-            
-    //     }
+    }
 
-    //     if (SocketUp != null)
-    //     {
-            
-    //     }
+    public void MainPowerOnButton()
+    {
+        tower.TurnOnAllCableConnected();
 
-    //     if (SocketUp != null)
-    //     {
-            
-    //     }
-
-    //     if (SocketUp != null)
-    //     {
-            
-    //     }
-        
-
-
-
-    // }
+    }
 }

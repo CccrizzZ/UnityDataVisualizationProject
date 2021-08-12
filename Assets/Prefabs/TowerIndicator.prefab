@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Normal: {fileID: 2100000, guid: a9bb96f198c9147bb921a79349666893, type: 2}
   Highlight: {fileID: 2100000, guid: edc5591612b2e4aa6968db7cc1363fb8, type: 2}
+  Off: {fileID: 2100000, guid: 296c1f8523a784db3bec7b1cc2a98dbb, type: 2}
   TowerControlPopup: {fileID: 5074348188917386008, guid: 0344bf01dd7664a529c461bfc9ec31ae, type: 3}
   tower: {fileID: 0}
 --- !u!135 &7723306009017878691

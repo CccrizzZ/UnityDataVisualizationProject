@@ -25,6 +25,9 @@ public class TowerControlPanel : MonoBehaviour
 
     public void AddSingleModuleToArray(Tower newTower)
     {
+        // return if cant find canvas
+        if (GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>() == null) return;
+        
         // create new single control module
         var newTowerControlModule = Instantiate(SingleControlModulePrefab);
 
@@ -34,8 +37,8 @@ public class TowerControlPanel : MonoBehaviour
         // add to array
         ControlModulesArray.Add(newTowerControlModule);
 
-        // return if cant find canvas
-        if (GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>() == null) return;
+
+
 
         // append to canvas
         newTowerControlModule.transform.SetParent(ControlModulesArrayUI.transform, false);

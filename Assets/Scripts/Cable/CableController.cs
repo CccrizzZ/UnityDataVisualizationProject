@@ -4,6 +4,19 @@ public class CableController : MonoBehaviour
 {
     public Material cable1mat;
     public Material cable2mat;
+    public Material cableOffmat;
+
+
+    public GameObject cable1;
+    public GameObject cable2;
+
+
+
+    Material cable1PrevMat;
+    Material cable2PrevMat;
+
+
+
 
     Color cable1charge;
     Color cable2charge;
@@ -167,7 +180,7 @@ public class CableController : MonoBehaviour
 
     public bool isBothCableOn()
     {
-        return isOn(cable1mat) && isOn(cable2mat);
+        return cable1_On && cable2_On;
     }
 
 
@@ -175,8 +188,17 @@ public class CableController : MonoBehaviour
     {
         if(isBothCableOn()) return;
 
-        TurnOn(cable1mat);
-        TurnOn(cable2mat);
+
+        // print("Turning On Both Cable");
+
+        // TurnOn(cable1mat);
+        // TurnOn(cable2mat);
+
+
+        // set to off material
+        cable1.GetComponent<Renderer>().material = cable1mat;
+        cable2.GetComponent<Renderer>().material = cable2mat;
+
 
         cable1_On = true;
         cable2_On = true;
@@ -187,10 +209,24 @@ public class CableController : MonoBehaviour
     public void TurnOffBothCable()
     {
         if(!isBothCableOn()) return;
+        // print("Turning Off Both Cable");
 
-        TurnOff(cable1mat);
-        TurnOff(cable2mat);
+        // TurnOff(cable1mat);
+        // TurnOff(cable2mat);
 
+
+        // save both cables material
+        cable1PrevMat = cable1.GetComponent<Renderer>().material;
+        cable2PrevMat = cable2.GetComponent<Renderer>().material;
+
+
+        // set to off material
+        cable1.GetComponent<Renderer>().material = cableOffmat;
+        cable2.GetComponent<Renderer>().material = cableOffmat;
+
+
+
+        // set bool
         cable1_On = false;
         cable2_On = false;
 

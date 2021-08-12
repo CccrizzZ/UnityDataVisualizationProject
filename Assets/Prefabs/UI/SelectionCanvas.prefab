@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectBox: {fileID: 1390467844423810657}
+  MainCamera: {fileID: 0}
+  GroupSelectionPanel: {fileID: 658263683109099169, guid: cfc23b7cf20a34cc7b943b29847a0417, type: 3}
 --- !u!1 &7266997444241300493
 GameObject:
   m_ObjectHideFlags: 0
