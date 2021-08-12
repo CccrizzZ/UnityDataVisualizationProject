@@ -16,7 +16,8 @@ public class CableController : MonoBehaviour
 
     void Start() 
     {
-
+        cable1_On = true;
+        cable2_On = true;
     }
 
 

@@ -57,10 +57,8 @@ public class TowerIndicator : MonoBehaviour
         // set flag
         CanInteract = true;
 
-        // change color to highlight
-        mRenderer.material = Highlight;
-
-
+        // set color
+        SetToHighlightColor();
 
     }
 
@@ -69,8 +67,9 @@ public class TowerIndicator : MonoBehaviour
         // set flag
         CanInteract = false;
 
-        // change color to normal
-        mRenderer.material = Normal;
+
+        // set color
+        SetToNormalColor();
     }
 
     void OnMouseUp()
@@ -88,11 +87,8 @@ public class TowerIndicator : MonoBehaviour
 
         InitPopup();
 
-
-
-        // change to normal color after clicked
-        mRenderer.material = Normal;
-
+        // set color
+        SetToNormalColor();
 
 
     }
@@ -136,4 +132,18 @@ public class TowerIndicator : MonoBehaviour
     }
 
 
+    // colors
+    public void SetToNormalColor()
+    {
+        // change to normal color after clicked
+        mRenderer.material = Normal;
+
+    }
+
+    public void SetToHighlightColor()
+    {
+        // change color to highlight
+        mRenderer.material = Highlight;
+
+    }
 }
