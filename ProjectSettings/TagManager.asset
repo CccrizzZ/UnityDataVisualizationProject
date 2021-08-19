@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Indicator
+  - Popup
   - Canvas
   - InfoPopup
-  - Popup
+  - Cable
   layers:
   - Default
   - TransparentFX

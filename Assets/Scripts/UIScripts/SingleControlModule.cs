@@ -109,13 +109,18 @@ public class SingleControlModule : MonoBehaviour
 
     public void MainPowerOffButton()
     {
-        tower.TurnOffAllCableConnected();
+        // tower.TurnOffAllCableConnected();
 
+        // auto cable detection
+        tower.TurnOffTower();
     }
 
     public void MainPowerOnButton()
     {
-        tower.TurnOnAllCableConnected();
+        // tower.TurnOnAllCableConnected();
+
+        // auto cable detection
+        tower.TurnOnTower();
 
     }
 }
