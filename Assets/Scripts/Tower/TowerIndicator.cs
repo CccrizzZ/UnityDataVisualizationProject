@@ -12,12 +12,16 @@ public class TowerIndicator : MonoBehaviour
     [SerializeField] Material PreviousColor;
 
 
+    public GameObject SelectIndicatorRef;
+
 
 
     // References
     MeshRenderer mRenderer;
     Canvas CanvasRef;
-    public GameObject TowerControlPopup;
+    // public GameObject TowerControlPopup;
+    public GameObject TowerControlModule;
+
 
     public Tower tower;
 
@@ -57,13 +61,15 @@ public class TowerIndicator : MonoBehaviour
         if (IsMouseButtonAlreadyDown())return;
         if (IsTherePopup())return;
 
-
         // set flag
         CanInteract = true;
-
+ 
         // set color
-        SetToHighlightColor();
+        // SetToHighlightColor();
 
+
+        // turn select indicator on
+        SelectIndicatorRef.SetActive(true);
     }
 
     void OnMouseExit() 
@@ -76,8 +82,9 @@ public class TowerIndicator : MonoBehaviour
         CanInteract = false;
 
 
-        // set color
-        SetToNormalColor();
+        SelectIndicatorRef.SetActive(false);
+
+        // SetToColorAccordingToTower();
     }
 
     void OnMouseUp()
@@ -95,14 +102,30 @@ public class TowerIndicator : MonoBehaviour
 
         InitPopup();
 
-        // set color
-        SetToNormalColor();
+        // // set color
+        // SetToNormalColor();
+        // SetToColorAccordingToTower();
 
 
     }
 
 
 
+    void SetToColorAccordingToTower()
+    {
+        if (tower.isOn == false)
+        {
+            // set to off color
+            SetToOffColor();
+        }
+        else
+        {
+            // set to normal color
+            SetToNormalColor();
+            
+        }
+
+    }
 
     // determine if the left mouse button is down
     bool IsMouseButtonAlreadyDown()
@@ -121,21 +144,35 @@ public class TowerIndicator : MonoBehaviour
     void InitPopup()
     {
 
-        if (TowerControlPopup != null && tower != null)
+        if (TowerControlModule != null && tower != null)
         {
             // create new popup
-            var TowerPopup = Instantiate(TowerControlPopup);
-            var PopupControlPanelScript = TowerPopup.GetComponent<TowerControlPanel>();
+            // var TowerPopup = Instantiate(TowerControlPopup);
+            // var PopupControlPanelScript = TowerPopup.GetComponent<TowerControlPanel>();
 
-            // set tower controller to popup
-            PopupControlPanelScript.AddSingleModuleToArray(tower);
+            // // set tower controller to popup
+            // PopupControlPanelScript.AddSingleModuleToArray(tower);
 
 
 
             // append to canvas
-            TowerPopup.transform.SetParent(CanvasRef.transform, false);
+            // TowerPopup.transform.SetParent(CanvasRef.transform, false);
 
-            
+
+            // create control module
+            var ControlModule = Instantiate(TowerControlModule);
+            ControlModule.GetComponent<SingleControlModule>().tower = tower;
+
+
+            // append to canvas
+            ControlModule.transform.SetParent(CanvasRef.transform, false);
+
+
+
+
+
+
+
         }
     }
 

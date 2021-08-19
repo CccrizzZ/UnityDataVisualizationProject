@@ -106,15 +106,17 @@ public class SelectionBox : MonoBehaviour
             Vector3 screenPos = MainCamera.WorldToScreenPoint(item.transform.position);
         
 
-
+            var Indicator = item.GetComponent<TowerIndicator>();
             // highlight if in selection box
             if (IsInSelectionBox(screenPos, min, max))
             {
-                item.GetComponent<TowerIndicator>().SetToHighlightColor();
+                // item.GetComponent<TowerIndicator>().SetToHighlightColor();
+                Indicator.SelectIndicatorRef.SetActive(true);
             }
             else
             {
-                item.GetComponent<TowerIndicator>().SetToNormalColor();
+                // item.GetComponent<TowerIndicator>().SetToNormalColor();
+                Indicator.SelectIndicatorRef.SetActive(false);
                 
             }
         }
@@ -172,9 +174,21 @@ public class SelectionBox : MonoBehaviour
         // pass the list to popup UI
         foreach (var item in SelectList)
         {
+        
             temp.GetComponent<GroupSelectionPanel>().TowerIndicators.Add(item);
             
+            
+
+            // turn on selection indicators for all selected
+            
+
+            
         }
+
+
+
+
+
 
         // clear list
         SelectList.Clear();

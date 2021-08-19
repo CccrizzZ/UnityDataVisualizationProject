@@ -69,7 +69,6 @@ public class SingleControlModule : MonoBehaviour
         }
 
 
-
     }
 
 
@@ -83,6 +82,24 @@ public class SingleControlModule : MonoBehaviour
         {
            socket.TurnOnBothCable();
         }
+        
+
+        if (tower.IsAllCablesOn())
+        {
+            tower.IndicatorRef.SetToNormalColor();
+        }
+        else if (tower.AreSomeCablesOn())
+        {
+            tower.IndicatorRef.SetToNormalColor();
+        }
+        else
+        {
+            tower.IndicatorRef.SetToOffColor();
+        }
+
+
+
+
     }
 
 
@@ -122,5 +139,13 @@ public class SingleControlModule : MonoBehaviour
         // auto cable detection
         tower.TurnOnTower();
 
+    }
+
+
+
+    public void ControlModuleCloseButton()
+    {
+        tower.IndicatorRef.SelectIndicatorRef.SetActive(false);
+        Destroy(gameObject);
     }
 }

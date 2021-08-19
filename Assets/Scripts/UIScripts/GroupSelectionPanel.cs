@@ -10,6 +10,11 @@ public class GroupSelectionPanel : MonoBehaviour
     void Start() 
     {
         // TowerIndicators = new List<GameObject>();
+
+        foreach (var item in TowerIndicators)
+        {
+            item.GetComponent<TowerIndicator>().SelectIndicatorRef.SetActive(true);
+        }
     }
 
 
@@ -30,8 +35,14 @@ public class GroupSelectionPanel : MonoBehaviour
         // set selected tower indicator to its previous color
         foreach (var item in TowerIndicators)
         {
+            var Indicator = item.GetComponent<TowerIndicator>();
+            
             // print(item.GetComponent<TowerIndicator>().tower.name);
-            item.GetComponent<TowerIndicator>().SetToNormalColor();
+            // Indicator.SetToNormalColor();
+
+            Indicator.SelectIndicatorRef.SetActive(false);
+
+
         }
         
 
@@ -49,7 +60,8 @@ public class GroupSelectionPanel : MonoBehaviour
 
         foreach (var item in TowerIndicators)
         {
-            item.GetComponent<TowerIndicator>().tower.TurnOffAllCableConnected();
+            // item.GetComponent<TowerIndicator>().tower.TurnOffAllCableConnected();
+            item.GetComponent<TowerIndicator>().tower.TurnOffTower();
         }
     }
 
@@ -60,7 +72,9 @@ public class GroupSelectionPanel : MonoBehaviour
 
         foreach (var item in TowerIndicators)
         {
-            item.GetComponent<TowerIndicator>().tower.TurnOnAllCableConnected();
+            // item.GetComponent<TowerIndicator>().tower.TurnOnAllCableConnected();
+            item.GetComponent<TowerIndicator>().tower.TurnOnTower();
+            
         }
     }
 }

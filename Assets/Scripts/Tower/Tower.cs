@@ -19,11 +19,13 @@ public class Tower : MonoBehaviour
     // for auto cable detection
     public List<CableController> AllCablesArr;
 
+    public TowerIndicator IndicatorRef;
 
 
     void Start()
     {
         isOn = true;
+
     }
 
     void Update()
@@ -36,15 +38,18 @@ public class Tower : MonoBehaviour
     // turn off all cables in cable list
     public void TurnOffTower()
     {
-        print("turning off");
         if (AllCablesArr.Count == 0) return;
-        print("turning off2");
 
         foreach (var item in AllCablesArr)
         {
             if(!item.isBothCableOn())continue;
             item.TurnOffBothCable();
         }
+
+        IndicatorRef.SetToOffColor();
+
+
+        isOn = false;
     }
 
     public void TurnOnTower()
@@ -57,7 +62,61 @@ public class Tower : MonoBehaviour
             if(item.isBothCableOn())continue;
             item.TurnOnBothCable();
         }
+
+
+
+        IndicatorRef.SetToNormalColor();
+    
+        isOn = true;
     }
+
+
+
+    // determine if all cable connected are on
+    public bool IsAllCablesOn()
+    {        
+        // iterate all cable arr
+        foreach (var item in AllCablesArr)
+        {
+            
+            // if one of the cable is off returns false
+            if (item.isBothCableOn())
+            {
+                continue;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        return true;
+    }
+
+    // return true if one of the cables is on
+    // return false if non of the cables are on
+    public bool AreSomeCablesOn()
+    {        
+        // iterate all cable arr
+        foreach (var item in AllCablesArr)
+        {
+            
+            // if one of the cable is off returns false
+            if (item.isBothCableOn())
+            {
+                return true;
+            }
+            else
+            {
+                continue;
+            }
+
+        }
+
+        return false;
+    }
+
 
 
 

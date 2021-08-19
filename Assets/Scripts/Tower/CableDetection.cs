@@ -12,10 +12,10 @@ public class CableDetection : MonoBehaviour
 
     void Start()
     {
+        // overlap detection
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2);
         foreach (var item in hitColliders)
         {
-            print(item.name);
 
             //  add all item with tag cable to tower controller's cable array
             if (item.tag == "Cable")

@@ -15,6 +15,7 @@ public class ButtonScript : MonoBehaviour
 
         
         Destroy(gameObject);
+
     }
 
 
