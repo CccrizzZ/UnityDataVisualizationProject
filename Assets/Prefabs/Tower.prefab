@@ -161,6 +161,7 @@ MonoBehaviour:
   CableRight: {fileID: 0}
   AllCablesArr: []
   IndicatorRef: {fileID: 6918402909539617734}
+  Detector: {fileID: 7345579016243502164}
 --- !u!1001 &342548623123107203
 PrefabInstance:
   m_ObjectHideFlags: 0

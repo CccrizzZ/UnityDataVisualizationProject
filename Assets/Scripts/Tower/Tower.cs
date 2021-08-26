@@ -21,6 +21,7 @@ public class Tower : MonoBehaviour
 
     public TowerIndicator IndicatorRef;
 
+    public CableDetection Detector;
 
     void Start()
     {
@@ -174,6 +175,43 @@ public class Tower : MonoBehaviour
 
         isOn = true;
         
+    }
+
+
+
+    // update tower indicators color
+    public void UpdateIndicatorColor()
+    {
+        if (AreSomeCablesOn())
+        {
+            // set green
+            IndicatorRef.SetToNormalColor();
+        }
+        else
+        {
+            // set red
+            IndicatorRef.SetToOffColor();
+        }
+    }
+
+
+
+
+
+    // void ShowIndicator(bool show)
+    // {
+    //     IndicatorRef.gameObject.SetActive(show);
+    // }
+
+
+
+    // show or hide all cables 
+    void ShowCables(bool show)
+    {
+        foreach (var item in AllCablesArr)
+        {
+            item.gameObject.SetActive(show);
+        }
     }
 
 }

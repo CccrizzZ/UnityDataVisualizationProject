@@ -69,6 +69,7 @@ public class SingleControlModule : MonoBehaviour
         }
 
 
+
     }
 
 
@@ -82,24 +83,6 @@ public class SingleControlModule : MonoBehaviour
         {
            socket.TurnOnBothCable();
         }
-        
-
-        if (tower.IsAllCablesOn())
-        {
-            tower.IndicatorRef.SetToNormalColor();
-        }
-        else if (tower.AreSomeCablesOn())
-        {
-            tower.IndicatorRef.SetToNormalColor();
-        }
-        else
-        {
-            tower.IndicatorRef.SetToOffColor();
-        }
-
-
-
-
     }
 
 
@@ -127,22 +110,27 @@ public class SingleControlModule : MonoBehaviour
     public void MainPowerOffButton()
     {
         // tower.TurnOffAllCableConnected();
-
-        // auto cable detection
         tower.TurnOffTower();
+        CallTowerUpdateAllNearBy();
+
     }
 
     public void MainPowerOnButton()
     {
         // tower.TurnOnAllCableConnected();
-
-        // auto cable detection
         tower.TurnOnTower();
+        CallTowerUpdateAllNearBy();
 
     }
 
 
+    void CallTowerUpdateAllNearBy()
+    {
+        tower.Detector.UpdateAllNearByTowers();
+    }
 
+
+    
     public void ControlModuleCloseButton()
     {
         tower.IndicatorRef.SelectIndicatorRef.SetActive(false);

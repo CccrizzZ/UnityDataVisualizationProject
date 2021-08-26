@@ -35,7 +35,7 @@ public class TowerIndicator : MonoBehaviour
         mRenderer = GetComponent<MeshRenderer>();
 
         
-        if (GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>() == null) return;
+        if (!GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>()) return;
         CanvasRef = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
 
 
@@ -198,7 +198,7 @@ public class TowerIndicator : MonoBehaviour
     public void SetToOffColor()
     {
         // change color to highlight
-        mRenderer.material = Off;
+        mRenderer.material = Highlight;
 
     }
 
@@ -221,5 +221,13 @@ public class TowerIndicator : MonoBehaviour
     public string GetTowerName()
     {
         return tower.name;
+    }
+
+
+
+
+    public void UpdateIndicator()
+    {
+        tower.UpdateIndicatorColor();
     }
 }

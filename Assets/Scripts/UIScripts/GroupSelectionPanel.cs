@@ -10,11 +10,6 @@ public class GroupSelectionPanel : MonoBehaviour
     void Start() 
     {
         // TowerIndicators = new List<GameObject>();
-
-        foreach (var item in TowerIndicators)
-        {
-            item.GetComponent<TowerIndicator>().SelectIndicatorRef.SetActive(true);
-        }
     }
 
 
@@ -29,19 +24,15 @@ public class GroupSelectionPanel : MonoBehaviour
 
     public void CloseButtonEvent()
     {
-        print(TowerIndicators.Count);
+        // print(TowerIndicators.Count);
 
 
         // set selected tower indicator to its previous color
         foreach (var item in TowerIndicators)
         {
-            var Indicator = item.GetComponent<TowerIndicator>();
-            
             // print(item.GetComponent<TowerIndicator>().tower.name);
-            // Indicator.SetToNormalColor();
-
-            Indicator.SelectIndicatorRef.SetActive(false);
-
+            // item.GetComponent<TowerIndicator>().SetToNormalColor();
+            item.GetComponent<TowerIndicator>().SelectIndicatorRef.SetActive(false);
 
         }
         
@@ -61,7 +52,13 @@ public class GroupSelectionPanel : MonoBehaviour
         foreach (var item in TowerIndicators)
         {
             // item.GetComponent<TowerIndicator>().tower.TurnOffAllCableConnected();
-            item.GetComponent<TowerIndicator>().tower.TurnOffTower();
+
+            var TIndicator = item.GetComponent<TowerIndicator>();
+            TIndicator.tower.TurnOffTower();
+
+            // Update all nearby tower indicators when clicked on or off
+            TIndicator.tower.Detector.UpdateAllNearByTowers();
+
         }
     }
 
@@ -73,8 +70,17 @@ public class GroupSelectionPanel : MonoBehaviour
         foreach (var item in TowerIndicators)
         {
             // item.GetComponent<TowerIndicator>().tower.TurnOnAllCableConnected();
-            item.GetComponent<TowerIndicator>().tower.TurnOnTower();
-            
+
+            var TIndicator = item.GetComponent<TowerIndicator>();
+            TIndicator.tower.TurnOnTower();
+
+            // Update all nearby tower indicators when clicked on or off
+            TIndicator.tower.Detector.UpdateAllNearByTowers();
+
+
+
         }
     }
+
+    
 }
